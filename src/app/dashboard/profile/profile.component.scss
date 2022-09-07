@@ -1,0 +1,70 @@
+@import 'src/scss/mixins/breakpoints';
+@import 'src/scss/app.variables';
+
+.mat-card {
+  margin: -45px auto;
+}
+
+@include media-breakpoint-up(sm) {
+  .mat-card {
+    width: auto;
+    max-width: 600px;
+  }
+}
+
+.form {
+  &__row {
+    display: flex;
+    margin: 0 -10px;
+  }
+
+  &__element {
+    padding: 10px;
+
+    .mat-form-field {
+      width: 280px;
+    }
+  }
+}
+
+.profile__documents {
+  &-item {
+    &.mat-list-item {
+      height: unset;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+    &-title.mat-line {
+      margin-left: 20px;
+      margin-top: 12px;
+      font-size: 1.2em;
+    }
+    &-divider.mat-divider {
+      position: relative;
+    }
+    &-status-bar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      p {
+        display: flex;
+        align-content: center;
+        place-items: center;
+      }
+      span {
+        margin-left: 20px;
+      }
+    }
+    &-status-progress {
+      margin-left: 20px;
+      display: flex;
+      float: left;
+      font-weight: bolder;
+    }
+  }
+}
+
+.mat-stroked-button {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}

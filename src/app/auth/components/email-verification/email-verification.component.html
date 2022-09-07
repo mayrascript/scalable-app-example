@@ -1,0 +1,28 @@
+<div [@fadeIn]="'show'" class="auth-section">
+  <div
+    *ngIf="showOnVerificationView$ | async; else showSuccessScreenMessage"
+    class="auth-section__content"
+  >
+    <h2>Estamos vericando tu email</h2>
+
+    <p>
+      Hola!, <strong>{{ email$ | async }}</strong> por favor aguarda un momento.
+    </p>
+
+    <br />
+  </div>
+
+  <ng-template #showSuccessScreenMessage>
+    <div class="auth-section__content">
+      <h2>¡Email verificado exitosamente!</h2>
+
+      <p>
+        Ya puedes iniciar sesión.
+      </p>
+
+      <br />
+
+      <a color="primary" mat-button routerLink="/auth">Redirigirme</a>
+    </div>
+  </ng-template>
+</div>

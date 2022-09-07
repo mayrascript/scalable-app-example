@@ -1,0 +1,40 @@
+@import 'src/scss/app.variables';
+@import 'src/scss/mixins/breakpoints';
+
+.auth-section {
+  margin-top: 80px;
+  &__content {
+    padding-left: $padding-huge;
+    padding-right: $padding-huge;
+  }
+}
+
+.form__text {
+  margin-top: $padding-huge;
+}
+
+@include media-breakpoint-up(md) {
+  .auth-section {
+    margin-top: 120px;
+    &__content {
+      padding-left: 78px;
+      padding-right: 78px;
+    }
+    &-form {
+      max-width: 674px;
+      .form__field,
+      .form-phone-box {
+        height: 50px;
+        box-sizing: border-box;
+        max-width: 50%;
+      }
+      .form__field {
+        margin-top: $padding-medium;
+        padding-right: $padding-medium;
+      }
+      &__button {
+        width: 100%;
+      }
+    }
+  }
+}

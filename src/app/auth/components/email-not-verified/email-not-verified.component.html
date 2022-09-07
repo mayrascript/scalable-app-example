@@ -1,0 +1,48 @@
+<div class="back-button-link">
+  <a mat-button color="primary" routerLink="/auth">Volver</a>
+</div>
+
+<div [@fadeIn]="'show'" class="auth-section">
+  <div
+    *ngIf="showVerificationView$ | async; else showSuccessScreenMessage"
+    class="auth-section__content"
+  >
+    <h1>Confirma tu email</h1>
+
+    <p>
+      Hemos enviado a tu correo <strong>{{ email$ | async }}</strong> un mensaje de
+      <strong>confirmación</strong>, allí encontrarás las instrucciones para confirmar tu email.
+    </p>
+
+    <div *ngIf="(seconds$ | async) !== 0; else showResendEmail">
+      <h5 class="counter">{{ seconds$ | async }}</h5>
+    </div>
+
+    <ng-template #showResendEmail>
+      <div [@fadeIn]="'show'">
+        <p>Si aún no lo has recibido por favor presiona el siguiente botón</p>
+
+        <br />
+
+        <button (click)="resendEmail()" [disabled]="loading" color="primary" mat-raised-button>
+          Re-enviar el correo de confirmación
+        </button>
+      </div>
+    </ng-template>
+  </div>
+
+  <ng-template #showSuccessScreenMessage>
+    <div class="auth-section__content">
+      <h2>Correo enviado</h2>
+
+      <p>
+        El correo ha sido enviado nuevamente.
+      </p>
+
+      <p>
+        No olvides revisar tu carpeta de Spam en caso de no recibir el correo, o contacta a un
+        administrador del sistema.
+      </p>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,21 @@
+@import 'src/scss/app.variables';
+@import 'src/scss/mixins/breakpoints';
+
+.auth-section {
+  &__content {
+    width: $field-width;
+    margin: $padding-huge;
+  }
+}
+.counter {
+  text-align: center;
+  font-size: 6em;
+  margin-top: 50px;
+}
+@include media-breakpoint-up(md) {
+  .auth-section {
+    &__content {
+      margin: $padding-huge auto;
+    }
+  }
+}

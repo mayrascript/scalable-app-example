@@ -1,0 +1,87 @@
+<mat-nav-list appAccordion class="navigation pt-0">
+  <ng-container *ngFor="let menuitem of menuService.getAll()">
+    <mat-list-item
+      *appPermission="menuitem.permissions"
+      appAccordionLink
+      id="{{ menuitem.state }}"
+      group="{{ menuitem.state }}"
+    >
+      <button
+        *ngIf="menuitem.type === 'button'"
+        mat-stroked-button
+        color="primary"
+        class="relative menu-button"
+        appAccordionToggle
+        [routerLink]="menuitem.state || ''"
+      >
+        <span>{{ menuitem.name }}</span>
+      </button>
+
+      <a
+        *ngIf="menuitem.type === 'link'"
+        class="relative"
+        appAccordionToggle
+        [routerLink]="menuitem.state || ''"
+      >
+        <mat-icon>{{ menuitem.icon }}</mat-icon>
+        <span>{{ menuitem.name }}</span>
+        <span class="flex-auto"></span>
+        <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{
+          badge.value
+        }}</span>
+      </a>
+      <a
+        appAccordionToggle
+        class="relative"
+        href="{{ menuitem.state }}"
+        *ngIf="menuitem.type === 'extLink'"
+      >
+        <mat-icon>{{ menuitem.icon }}</mat-icon>
+        <span>{{ menuitem.name }}</span>
+        <span class="flex-auto"></span>
+        <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{
+          badge.value
+        }}</span>
+      </a>
+      <a
+        appAccordionToggle
+        class="relative"
+        href="{{ menuitem.state }}"
+        target="_blank"
+        *ngIf="menuitem.type === 'extTabLink'"
+      >
+        <mat-icon>{{ menuitem.icon }}</mat-icon>
+        <span>{{ menuitem.name }}</span>
+        <span class="flex-auto"></span>
+        <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{
+          badge.value
+        }}</span>
+      </a>
+      <a
+        appAccordionToggle
+        class="relative"
+        href="javascript:;"
+        *ngIf="menuitem.type === 'sub'"
+      >
+        <mat-icon>{{ menuitem.icon }}</mat-icon>
+        <span>{{ menuitem.name }}</span>
+        <span class="flex-auto"></span>
+        <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{
+          badge.value
+        }}</span>
+        <mat-icon class="menu-caret">arrow_drop_down</mat-icon>
+      </a>
+      <mat-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">
+        <ng-container *ngFor="let childItem of menuitem.children">
+          <mat-list-item
+            *appPermission="childItem.permissions"
+            routerLinkActive="open"
+            id="{{ childItem.state }}"
+          >
+            <a [routerLink]="childItem.state" class="relative">{{ childItem.name }}</a>
+          </mat-list-item>
+        </ng-container>
+      </mat-nav-list>
+    </mat-list-item>
+  </ng-container>
+</mat-nav-list>

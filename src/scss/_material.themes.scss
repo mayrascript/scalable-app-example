@@ -1,0 +1,43 @@
+@import '~@angular/material/theming';
+@import 'material.variables';
+@import 'app.variables';
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($theme);
+
+@include angular-material-typography($typography);
+
+.mat-h1,
+.mat-headline,
+.mat-typography h1 {
+  color: map-get($primary, 400);
+  font-size: $font-size-h1;
+  font-family: Poppins, 'sans-serif';
+  line-height: 36px;
+  letter-spacing: 0.0018em;
+}
+
+.mat-body p,
+.mat-body-1 p,
+.mat-typography p {
+  color: map-get($mat-gray, 800);
+  font-size: 16px;
+  line-height: 28px;
+  font-family: Poppins, 'sans-serif';
+  font-style: normal;
+  font-weight: normal;
+}
+
+.mat-stepper-horizontal.disable-steps .mat-step-header {
+  pointer-events: none !important;
+}
+
+.mat-form-field {
+  width: $field-width;
+}
+
+.mat-button {
+  font-size: 1rem;
+}

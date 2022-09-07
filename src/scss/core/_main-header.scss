@@ -1,0 +1,75 @@
+/* $header
+ ------------------------------------------*/
+mat-toolbar {
+  .toolbar-avatar {
+    width: 40px;
+    height: 40px;
+    line-height: 24px;
+  }
+
+  .toolbar-avatar img {
+    width: 40px;
+    border-radius: 50%;
+  }
+
+  .notification-label {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 13px;
+    border-radius: 50%;
+    width: 13px;
+    height: 13px;
+    background-color: mat-color($warn);
+    border: 4px solid mat-color($warn);
+    color: white;
+    text-align: center;
+  }
+
+  &.main-header {
+    padding: 0 8px;
+    position: relative;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+    z-index: 9;
+    height: 64px;
+
+    .button-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      .main-button {
+        border-color: white;
+      }
+    }
+  }
+}
+
+// Specific height for mobile devices in portrait mode.
+@media ($mat-xsmall) and (orientation: portrait) {
+  mat-toolbar {
+    &.main-header {
+      .branding {
+        padding: 0 16px 0 16px;
+      }
+
+      .logo {
+        width: 87px;
+        height: 20px;
+        -webkit-background-size: 87px 20px;
+        background-size: 87px 20px;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  mat-toolbar {
+    &.main-header {
+      .button-container {
+        justify-content: flex-end;
+      }
+    }
+  }
+}

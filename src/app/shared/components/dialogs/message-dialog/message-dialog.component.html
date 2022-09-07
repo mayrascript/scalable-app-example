@@ -1,0 +1,26 @@
+<h2 *ngIf="title" class="mt-0 text-center">{{ title }}</h2>
+
+<p
+  *ngIf="options?.htmlMessage; else plainText"
+  class="text-center mat-body mat-text-muted"
+  [innerHTML]="message | sanitizeHtml"
+></p>
+
+<ng-template #plainText>
+  <p class="text-center">{{ message }}</p>
+</ng-template>
+
+<div class="text-center">
+  <button class="mr-1" color="primary" mat-raised-button type="button" (click)="onClick('accept')">
+    {{ options?.btnOkText || 'Aceptar' }}
+  </button>
+
+  <button
+    *ngIf="type === types.Confirm"
+    mat-stroked-button
+    type="button"
+    (click)="onClick('cancel')"
+  >
+    {{ options?.btnCancelText || 'Cancelar' }}
+  </button>
+</div>

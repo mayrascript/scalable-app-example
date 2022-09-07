@@ -1,0 +1,11 @@
+@import 'src/scss/app.variables';
+@import 'src/scss/mixins/breakpoints';
+
+:host {
+  width: 100vw;
+}
+@include media-breakpoint-up(md) {
+  :host {
+    width: 490px;
+  }
+}

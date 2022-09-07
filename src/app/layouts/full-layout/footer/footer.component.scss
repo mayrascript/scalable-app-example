@@ -1,0 +1,44 @@
+.footer {
+  position: relative;
+  background-color: #2457c2;
+  color: #fff;
+  padding-top: 48px;
+  z-index: 10;
+  .container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  &-links {
+    display: flex;
+    justify-content: space-around;
+    &-title {
+      font-size: 2em;
+      font-weight: 600;
+    }
+    ul {
+      padding-inline-start: 0;
+      & > li {
+        list-style: none;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        a {
+          color: #fff;
+          font-size: 18px;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    &-info {
+      p {
+        font-size: 14px;
+        color: white;
+      }
+    }
+  }
+  &-rights {
+    text-align: center;
+  }
+}

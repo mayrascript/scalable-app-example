@@ -1,0 +1,77 @@
+<div class="auth-section" [@fadeIn]="'show'">
+  <div class="auth-section__content">
+    <h1>Iniciar Sesión</h1>
+
+    <form class="auth-section-form" [formGroup]="loginForm" (ngSubmit)="login()">
+      <mat-form-field class="form__field" appearance="fill">
+        <mat-label>Correo*</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          type="email"
+          [errorStateMatcher]="matcher"
+          placeholder="Ex. hola@example.com"
+        />
+
+        <mat-error
+          *ngIf="
+            loginForm.controls.email.hasError('email') &&
+            !loginForm.controls.email.hasError('required')
+          "
+        >
+          Por favor ingrese un email válido
+        </mat-error>
+        <mat-error *ngIf="loginForm.controls.email.hasError('required')">
+          Este campo es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__field" appearance="fill">
+        <mat-label>Contraseña*</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          type="password"
+          [errorStateMatcher]="matcher"
+          placeholder="Min 6 caracteres y máximo 12"
+        />
+
+        <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+          Este campo es <strong>requerido</strong>
+        </mat-error>
+
+        <mat-error
+          *ngIf="
+            loginForm.controls.password.hasError('minLength') ||
+            loginForm.controls.password.hasError('maxLength')
+          "
+        >
+          Este campo debe contener entre 6 y 12 caracteres
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        class="auth-section-form__button"
+        [disabled]="loginForm.invalid"
+        mat-raised-button
+        color="primary"
+      >
+        Iniciar Sesión
+      </button>
+
+      <div class="auth-section-form__footer">
+        <p>
+          No tengo cuenta,<a mat-button color="primary" routerLink="/auth/register">Crear Cuenta</a>
+        </p>
+
+        <a
+          class="auth-section-form__link"
+          mat-button
+          color="primary"
+          routerLink="/auth/forgot-password"
+          >Olvidé mi contraseña</a
+        >
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+<div class="auth-section" [@fadeIn]="'show'">
+  <div class="auth-section__content">
+    <h1>Registro</h1>
+
+    <br />
+
+    <form class="auth-section-form" [formGroup]="registerForm" (ngSubmit)="register()">
+      <mat-form-field class="form__field" appearance="fill">
+        <mat-label>Nombre*</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="firstName"
+          [errorStateMatcher]="matcher"
+          placeholder="Carlos"
+        />
+
+        <mat-error *ngIf="registerForm.controls.firstName.hasError('required')">
+          Este campo es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__field" appearance="fill">
+        <mat-label>Apellido* </mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="lastName"
+          [errorStateMatcher]="matcher"
+          placeholder="Perez"
+        />
+
+        <mat-error *ngIf="registerForm.controls.lastName.hasError('required')">
+          Este campo es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__field" appearance="fill">
+        <mat-label>Correo*</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          type="email"
+          [errorStateMatcher]="matcher"
+          placeholder="Ex. hola@example.com"
+        />
+
+        <mat-error
+          *ngIf="
+            registerForm.controls.email.hasError('email') &&
+            !registerForm.controls.email.hasError('required')
+          "
+        >
+          Por favor ingrese un email válido
+        </mat-error>
+        <mat-error *ngIf="registerForm.controls.email.hasError('required')">
+          Este campo es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__field" appearance="fill">
+        <mat-label>Contraseña*</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          type="password"
+          [errorStateMatcher]="matcher"
+          placeholder="Min 6 caracteres y máximo 12"
+        />
+
+        <mat-error *ngIf="registerForm.controls.password.hasError('required')">
+          Este campo es <strong>requerido</strong>
+        </mat-error>
+
+        <mat-error
+          *ngIf="
+            registerForm.controls.password.hasError('minLength') ||
+            registerForm.controls.password.hasError('maxLength')
+          "
+        >
+          Este campo debe contener entre 6 y 12 caracteres
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form__field" appearance="fill">
+        <mat-label>Confirmar Contraseña*</mat-label>
+        <input
+          matInput
+          formControlName="confirmPassword"
+          type="password"
+          [errorStateMatcher]="matcher"
+          placeholder="Por favor digite nuevamente la contraseña"
+        />
+
+        <mat-error *ngIf="registerForm.controls.confirmPassword.hasError('required')">
+          Este campo es <strong>requerido</strong>
+        </mat-error>
+
+        <mat-error *ngIf="registerForm.controls.confirmPassword.hasError('mismatch')">
+          Las contraseñas no coinciden
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        class="auth-section-form__button"
+        [disabled]="registerForm.invalid"
+        mat-raised-button
+        color="primary"
+      >
+        Registrarme
+      </button>
+
+      <div class="auth-section-form__footer">
+        <p>
+          Ya tengo una cuenta,<a mat-button color="primary" routerLink="/auth/login"
+            >Iniciar Sesión</a
+          >
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<mat-toolbar class="blue-header"></mat-toolbar>
+
+<mat-card>
+  <mat-card-title><h1>Mi perfil</h1></mat-card-title>
+
+  <br />
+
+  <mat-card-content>
+    <form class="form" [formGroup]="form.group" (ngSubmit)="onSubmit()">
+      <div class="form__row">
+        <div class="form__element">
+          <mat-form-field>
+            <mat-label>Nombre</mat-label>
+
+            <input formControlName="firstName" matInput type="text" />
+          </mat-form-field>
+
+          <app-error controlName="firstName" [form]="form"></app-error>
+        </div>
+
+        <div class="form__element">
+          <mat-form-field>
+            <mat-label>Apellido</mat-label>
+
+            <input formControlName="lastName" matInput type="text" />
+          </mat-form-field>
+
+          <app-error controlName="lastName" [form]="form"></app-error>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <div class="form__element">
+          <mat-form-field>
+            <mat-label>Correo</mat-label>
+
+            <input formControlName="email" matInput type="email" />
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <br />
+      <mat-card-title><h2>Documentación requerida</h2></mat-card-title>
+
+      <div class="mt-1">
+        <button class="mr-1" color="primary" mat-raised-button [disabled]="loading$ | async">
+          Guardar
+        </button>
+
+        <button mat-raised-button [disabled]="loading$ | async" (click)="onCancel()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

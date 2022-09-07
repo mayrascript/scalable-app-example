@@ -1,0 +1,35 @@
+<div
+  class="app mat-typography"
+  [ngClass]="{
+    boxed: options.boxed,
+    'collapsed-sidebar': options.collapsed,
+    'compact-sidebar': options.compact,
+    'side-panel-opened': sidePanelOpened,
+    'side-panel-closed': !sidePanelOpened
+  }"
+>
+  <app-header (toggleSidenav)="sidemenu.toggle()"></app-header>
+
+  <mat-sidenav-container class="app-inner">
+    <mat-sidenav
+      #sidemenu
+      class="sidebar-panel"
+      id="sidebar-panel"
+      [mode]="isOver() ? 'over' : 'side'"
+      [opened]="!isOver()"
+      (open)="sidePanelOpened = true"
+      (close)="sidePanelOpened = false"
+      (mouseover)="menuMouseOver()"
+      (mouseout)="menuMouseOut()"
+      [perfectScrollbar]="config"
+      [disabled]="mediaMatcher.matches"
+    >
+      <app-sidebar (click)="updatePerfectScrollbar()"></app-sidebar>
+    </mat-sidenav>
+    <div [perfectScrollbar]="config">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-container>
+
+  <app-footer></app-footer>
+</div>
